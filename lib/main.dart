@@ -31,8 +31,7 @@ class ProfilePage extends StatelessWidget {
         ),
         actions: [
           PopupMenuButton<String>(
-            onSelected: (String value) {
-            },
+            onSelected: (String value) {},
             itemBuilder: (BuildContext context) {
               return {'Option 1', 'Option 2', 'Option 3'}.map((String choice) {
                 return PopupMenuItem<String>(
@@ -63,14 +62,15 @@ class ProfilePage extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 30,
-                            backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                            backgroundImage: NetworkImage(
+                                'https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png'),
                           ),
                           SizedBox(width: 16),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Mausam Rayamajhi',
+                                'Ahmed Abo Abadi',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -78,7 +78,7 @@ class ProfilePage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'A trendsetter',
+                                'Javascript developer',
                                 style: TextStyle(
                                   color: Colors.white70,
                                 ),
@@ -93,10 +93,10 @@ class ProfilePage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          _buildInfoColumn('846', 'Collect'),
-                          _buildInfoColumn('51', 'Attention'),
-                          _buildInfoColumn('267', 'Track'),
-                          _buildInfoColumn('39', 'Coupons'),
+                          buildInfoColumn('846', 'Collect'),
+                          buildInfoColumn('51', 'Attention'),
+                          buildInfoColumn('267', 'Track'),
+                          buildInfoColumn('39', 'Coupons'),
                         ],
                       ),
                     ],
@@ -107,17 +107,22 @@ class ProfilePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildIconColumn(Icons.account_balance_wallet, 'Wallet'),
-                  _buildIconColumn(Icons.local_shipping, 'Delivery'),
-                  _buildIconColumn(Icons.message, 'Message', badgeCount: 2),
-                  _buildIconColumn(Icons.support_agent, 'Service'),
+                  buildIconColumn(Icons.account_balance_wallet, 'Wallet'),
+                  buildIconColumn(Icons.local_shipping, 'Delivery'),
+                  buildIconColumn(Icons.message, 'Message', badgeCount: 2),
+                  buildIconColumn(Icons.support_agent, 'Service'),
                 ],
               ),
               SizedBox(height: 50),
-              _buildListTileWithShadow(Icons.location_on, 'Address', 'Ensure your harvesting address'),
-              _buildListTileWithShadow(Icons.lock, 'Privacy', 'System permission change'),
-              _buildListTileWithShadow(Icons.settings, 'General', 'Basic functional settings'),
-              _buildListTileWithShadow(Icons.notifications, 'Notification', 'Take over the news in time'),
+              // List Tiles with Shadows
+              buildListTileWithShadow(Icons.location_on, 'Address',
+                  'Ensure your harvesting address'),
+              buildListTileWithShadow(
+                  Icons.lock, 'Privacy', 'System permission change'),
+              buildListTileWithShadow(
+                  Icons.settings, 'General', 'Basic functional settings'),
+              buildListTileWithShadow(Icons.notifications, 'Notification',
+                  'Take over the news in time'),
             ],
           ),
         ),
@@ -125,7 +130,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Column _buildInfoColumn(String count, String label) {
+  Column buildInfoColumn(String count, String label) {
     return Column(
       children: [
         Text(
@@ -146,7 +151,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Column _buildIconColumn(IconData icon, String label, {int badgeCount = 0}) {
+  Column buildIconColumn(IconData icon, String label, {int badgeCount = 0}) {
     return Column(
       children: [
         Stack(
@@ -186,7 +191,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  ListTile _buildListTile(IconData icon, String title, String subtitle) {
+  ListTile buildListTile(IconData icon, String title, String subtitle) {
     return ListTile(
       leading: Icon(icon),
       title: Text(
@@ -212,44 +217,32 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-//   Widget _buildListTileWithShadow(IconData icon, String title, String subtitle) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         boxShadow: [
-//           BoxShadow(
-//             color: Colors.white,
-//             blurRadius: 10.0,
-//             offset: Offset(0, 5),
-//           ),
-//         ],
-//       ),
-//       child: _buildListTile(icon, title, subtitle),
-//     );
-//   }
-
-  Widget _buildListTileWithShadow(IconData icon, String title, String subtitle) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white, // Set the background color
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromARGB(255, 225, 197, 245),
-            blurRadius: 40.0, // Soften the shadow
-            spreadRadius: 5.0, // Extend the shadow
-            offset: Offset(
-              15.0, // Move to right 15 horizontally
-              15.0, // Move to bottom 15 vertically
-            ),
-          )
-        ],
-        border: Border.all(
-          color: Color.fromARGB(255, 203, 205, 243), // Set the border color to green
-          width: 2.0, // Set the border width
+  Widget buildListTileWithShadow(IconData icon, String title, String subtitle) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          vertical: 16.0), // Adjust the value as needed
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(255, 162, 192, 244),
+              blurRadius: 40.0,
+              spreadRadius: 50.0,
+              offset: Offset(
+                15.0,
+                15.0,
+              ),
+            )
+          ],
+          border: Border.all(
+            color: Color.fromARGB(255, 203, 205, 243),
+            width: 2.0,
+          ),
+          borderRadius: BorderRadius.circular(18),
         ),
-        borderRadius: BorderRadius.circular(8), // Optionally add rounded corners
+        child: buildListTile(icon, title, subtitle),
       ),
-      child: _buildListTile(icon, title, subtitle),
     );
   }
 }
-
